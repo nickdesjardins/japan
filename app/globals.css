@@ -1,26 +1,490 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   RYŪGŪ — Palette
+   Traditional Japanese colour names (dark lacquer + gold leaf,
+   the makie 蒔絵 look: gold sprinkled on black urushi lacquer)
+   ============================================================ */
+@theme {
+  /* Ground — lacquer blacks and deep sea.
+     Contrast ratios below are measured against --color-sumi. */
+  --color-sumi: #0b0b0f; /* 呂色    polished lacquer — page ground */
+  --color-roiro: #16161a; /* 墨      ink — cards, nav, panels */
+  --color-tetsu: #22222a; /* 鉄色    iron — raised surfaces */
+  --color-kachi: #131a33; /* 褐色    victory indigo — undersea chapters */
+  --color-konjo: #192f60; /* 紺青    navy pigment — ocean gradient mid-stop */
+  --color-ai: #165e83; /* 藍      indigo — wave arcs, coastlines (stroke only) */
+  --color-asagi: #00a3af; /* 浅葱    pale leek-blue — links            6.4:1 */
+  --color-sabi: #5c9291; /* 錆浅葱  rusted teal — connectors, kikko lines */
+  --color-mizu: #7fb3b8; /* 水浅葱  water-pale teal — captions        8.5:1 */
+
+  /* Light — silk and paper */
+  --color-shironeri: #f5f1e6; /* 白練  glossed silk — headings        17.4:1 */
+  --color-kinari: #e4ddcc; /* 生成り  raw silk — body text            14.5:1 */
+  --color-rikyu: #c9c1af; /* 利休白茶 pale tea — standfirsts          11.0:1 */
+  --color-nezu: #a8a297; /* 銀鼠    silver mouse — meta, captions      7.8:1 */
+  --color-washi: #f3efe4; /* 和紙    paper — the one inverted surface */
+  --color-ink: #1c1a18; /* 墨      warm black — text on washi        15.1:1 */
+  --color-susutake: #6f4b3e; /* 煤竹色 smoked bamboo — muted on washi  6.6:1 */
+
+  /* Fire — gold leaf and vermillion */
+  --color-kin: #e6b422; /* 黄金    gold — the drawn dragon line, rules */
+  --color-yamabuki: #f8b500; /* 山吹色 kerria gold — brightest highlight */
+  --color-kincha: #c98a28; /* 金茶    gold-brown — every hairline, at low alpha */
+  --color-ni: #e45e32; /* 丹色    torii vermillion — CTAs           5.6:1 */
+  --color-shu: #eb6101; /* 朱色    cinnabar — seals, chapter numerals 5.8:1 */
+  --color-shinshu: #ec6d71; /* 真朱  true cinnabar — hover state */
+  --color-bengara: #8f2e14; /* 弁柄色 iron-oxide red — the one red that
+                                     carries white text (7.2:1 with shironeri) */
+  --color-sakura: #f5c6c9; /* 桜色    cherry blossom */
+  --color-matsuba: #6a8f5f; /* 松葉色  pine needle green */
+
+  --font-weight-hairline: 200;
 }
 
+/* Fonts arrive as CSS variables from next/font — `inline` so the
+   utilities emit the resolved stack rather than re-declaring it. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-shippori), "Hiragino Mincho ProN", "Yu Mincho",
+    "Noto Serif JP", serif;
+  --font-body: var(--font-manrope), "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "Noto Sans JP", system-ui, sans-serif;
+  --font-brush: var(--font-yuji), "Hiragino Mincho ProN", "Yu Mincho", serif;
+
+  /* Native script deliberately skips the webfonts.
+     Shippori and Zen Kaku are CJK families: Google splits each into ~122
+     unicode-range shards, and the browser fetches a shard the moment a kanji
+     in its range is laid out in that family. Rendering this site's Japanese
+     in them pulled 2.2 MB across 117 requests. Every platform in our support
+     range already ships an excellent mincho and gothic, so native script uses
+     those and the webfonts stay for Latin, where they earn their weight. */
+  --font-jp: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
+    "MS Mincho", serif;
+  --font-jp-sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic",
+    "Noto Sans JP", "Meiryo", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  /* the fixed lore rail should not cover anchored headings */
+  scroll-padding-top: 5.5rem;
+  background-color: var(--color-sumi);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-sumi);
+  color: var(--color-kinari);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-bengara);
+  color: var(--color-shironeri);
+}
+
+/* No border-radius here: it would square off genuinely round controls
+   (the speaker buttons) the moment they take focus. */
+:focus-visible {
+  outline: 2px solid var(--color-yamabuki);
+  outline-offset: 3px;
+}
+
+/* Thin gold scrollbar — Firefox + WebKit */
+* {
+  scrollbar-color: var(--color-kin) var(--color-roiro);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-roiro);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-kin), #8a6420);
+  border-radius: 99px;
+  border: 2px solid var(--color-roiro);
+}
+
+/* ============================================================
+   Motifs — traditional patterns as tiling backgrounds
+   ============================================================ */
+
+/* 麻の葉 asanoha — the hemp leaf, a charm for a child's healthy growth */
+@utility motif-asanoha {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='%23c98a28' stroke-width='1' stroke-opacity='.45'%3E%3Cpath d='M28 0v97M0 24.25l28 16.17 28-16.17M0 72.75l28-16.17 28 16.17M0 24.25v48.5M56 24.25v48.5M28 40.42 0 24.25M28 40.42 56 24.25M28 56.58 0 72.75M28 56.58 56 72.75M0 24.25 28 8.08 56 24.25M0 72.75 28 88.92 56 72.75'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 97px;
+}
+
+/* washi paper grain — fibrous, uneven, warm */
+@utility motif-washi {
+  background-color: var(--color-washi);
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      rgba(163, 38, 56, 0.05),
+      transparent 45%
+    ),
+    radial-gradient(circle at 80% 70%, rgba(31, 86, 115, 0.05), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   Type helpers
+   ============================================================ */
+
+/* 縦書き — real vertical Japanese text: glyphs stay upright, stacking down */
+@utility tategaki {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.22em;
+}
+
+/* Latin set down the same margin. Upright stacked capitals are unreadable,
+   so these rotate as a line instead. */
+@utility tategaki-latin {
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  letter-spacing: 0.3em;
+}
+
+@utility text-gold-leaf {
+  background-image: linear-gradient(
+    100deg,
+    #8a6420 0%,
+    var(--color-kincha) 16%,
+    var(--color-kin) 32%,
+    #fde9a8 46%,
+    var(--color-yamabuki) 58%,
+    var(--color-kin) 76%,
+    #8a6420 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hairline-gold {
+  border-color: color-mix(in oklab, var(--color-kincha) 34%, transparent);
+}
+
+/* ============================================================
+   Reveal state
+
+   The `.js` prefix matters: these rules START content at opacity 0 and rely
+   on an observer to bring it back. If scripting is unavailable — disabled,
+   blocked, a crawler, or a bundle that failed to load — the class is never
+   added, the rules never match, and the page renders fully visible with no
+   animation. Content must never depend on JavaScript to become readable.
+   ============================================================ */
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ink-bloom {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes drift-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    background-position: 200% 50%;
+  }
+  to {
+    background-position: -100% 50%;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple-out {
+  from {
+    transform: scale(0.4);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(var(--drift, 40px), 108vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* The omikuji box being shaken until a stick drops out of the hole. */
+@keyframes shake-box {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  15% {
+    transform: rotate(-9deg) translateY(-6px);
+  }
+  30% {
+    transform: rotate(8deg) translateY(2px);
+  }
+  45% {
+    transform: rotate(-7deg) translateY(-4px);
+  }
+  60% {
+    transform: rotate(6deg) translateY(1px);
+  }
+  78% {
+    transform: rotate(-3deg) translateY(-2px);
+  }
+}
+
+/* The paper slip unrolling once it is drawn. */
+@keyframes unfurl {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scaleY(0.4);
+    transform-origin: top center;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    transform-origin: top center;
+  }
+}
+
+.anim-shake {
+  animation: shake-box 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+.anim-unfurl {
+  animation: unfurl 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ============================================================
+   Animation utilities
+   ============================================================ */
+.anim-float {
+  animation: float-y 7s ease-in-out infinite;
+}
+.anim-sway {
+  animation: sway 5s ease-in-out infinite;
+  transform-origin: 50% 8%;
+}
+.anim-spin-slow {
+  animation: spin-slow 90s linear infinite;
+}
+.anim-glow {
+  animation: glow-pulse 4.5s ease-in-out infinite;
+}
+.anim-shimmer {
+  animation: shimmer-sweep 7s linear infinite;
+}
+.anim-drift {
+  animation: drift-x 40s linear infinite;
+}
+
+/* Entrance orchestration — driven by IntersectionObserver adding
+   [data-revealed] on the group root. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="ink"] {
+  filter: blur(12px);
+  transform: scale(1.04);
+}
+[data-reveal="left"] {
+  transform: translate3d(-40px, 0, 0);
+}
+[data-reveal="right"] {
+  transform: translate3d(40px, 0, 0);
+}
+[data-reveal="scale"] {
+  transform: scale(0.92);
+}
+[data-revealed] [data-reveal],
+[data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Stagger group — direct children cascade in. Pure CSS so no per-child
+   JS bookkeeping is needed.
+   The container fades too: several of these grids draw their hairlines with a
+   background showing through 1px gaps, and without this the bare grid would
+   sit on screen as a grey slab while its cells were still invisible. */
+.js [data-stagger] {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+[data-stagger][data-revealed] {
+  opacity: 1;
+}
+.js [data-stagger] > * {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-stagger][data-revealed] > * {
+  opacity: 1;
+  transform: none;
+}
+[data-stagger] > *:nth-child(1) {
+  transition-delay: calc(var(--stagger, 85ms) * 0);
+}
+[data-stagger] > *:nth-child(2) {
+  transition-delay: calc(var(--stagger, 85ms) * 1);
+}
+[data-stagger] > *:nth-child(3) {
+  transition-delay: calc(var(--stagger, 85ms) * 2);
+}
+[data-stagger] > *:nth-child(4) {
+  transition-delay: calc(var(--stagger, 85ms) * 3);
+}
+[data-stagger] > *:nth-child(5) {
+  transition-delay: calc(var(--stagger, 85ms) * 4);
+}
+[data-stagger] > *:nth-child(6) {
+  transition-delay: calc(var(--stagger, 85ms) * 5);
+}
+[data-stagger] > *:nth-child(7) {
+  transition-delay: calc(var(--stagger, 85ms) * 6);
+}
+[data-stagger] > *:nth-child(8) {
+  transition-delay: calc(var(--stagger, 85ms) * 7);
+}
+[data-stagger] > *:nth-child(n + 9) {
+  transition-delay: calc(var(--stagger, 85ms) * 8);
+}
+
+/* A stroke that draws itself once its section is reached. */
+.js .draw-path {
+  stroke-dasharray: var(--len, 4000);
+  stroke-dashoffset: var(--len, 4000);
+  transition: stroke-dashoffset 2.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+[data-revealed] .draw-path {
+  stroke-dashoffset: 0;
+}
+
+/* ============================================================
+   Reduced motion — everything decorative stops, content still shows
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal],
+  [data-stagger],
+  [data-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .draw-path {
+    stroke-dashoffset: 0 !important;
+  }
 }
