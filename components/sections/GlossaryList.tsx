@@ -79,7 +79,7 @@ export function GlossaryList({ entries }: { entries: GlossaryEntry[] }) {
                   <span className="font-jp text-2xl leading-tight text-kin" lang={e.lang === "ko-KR" ? "ko" : "ja"}>
                     {e.script}
                   </span>
-                  <SpeakButton text={e.script} lang={e.lang} size="sm" />
+                  <SpeakButton text={e.script} romaji={e.term} lang={e.lang} size="sm" />
                 </span>
                 <span className="mt-1.5 block text-sm text-shironeri">{e.term}</span>
               </dt>

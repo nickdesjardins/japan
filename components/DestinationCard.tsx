@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { ArrivalChain } from "@/components/TransitRail";
 import { Tilt } from "@/components/motion/Effects";
 import { Reveal } from "@/components/motion/Reveal";
 import type { Destination } from "@/data/destinations";
+import { arrivalLegs } from "@/data/transit";
 
 export function DestinationCard({
   destination: d,
@@ -79,6 +81,10 @@ export function DestinationCard({
               <span className="font-jp text-lg text-kincha" lang="ja">{d.japaneseName}</span>
               <span className="text-xs italic text-nezu">{d.romaji}</span>
             </p>
+
+            {/* the short answer to "how do I get here" — the day's rail above
+                carries the full chain, including everything either side */}
+            <ArrivalChain legs={arrivalLegs(d.id)} />
 
             <p
               className="mt-6 font-display text-[1.15rem] leading-[1.6] italic"

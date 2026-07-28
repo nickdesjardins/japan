@@ -63,7 +63,11 @@ export function Phrasebook() {
                       >
                         {phrase.script}
                       </p>
-                      <SpeakButton text={phrase.script} lang={group.lang} />
+                      <SpeakButton
+                        text={phrase.script}
+                        romaji={phrase.romaji}
+                        lang={group.lang}
+                      />
                     </div>
 
                     <p className="mt-3 text-[0.95rem] text-shironeri">{phrase.romaji}</p>
@@ -85,14 +89,15 @@ export function Phrasebook() {
 
         <Reveal className="mt-20 border border-kincha/25 bg-roiro/50 p-7 sm:p-9">
           <h3 className="font-display text-xl text-shironeri">
-            If the speaker button sounds wrong
+            About the recordings
           </h3>
           <p className="mt-4 max-w-3xl text-[0.95rem] leading-[1.75] text-rikyu">
-            The audio uses whatever voices your device already has. Windows and macOS
-            both ship Japanese voices, but they are not always installed by default —
-            if a phrase comes out with an English accent, add the Japanese language
-            pack in your system settings and it will sound right. The button&rsquo;s
-            tooltip will tell you if no Japanese voice was found.
+            Every phrase and every word in the glossary was recorded in a native
+            voice and ships with the site, so the pronunciation is the same on any
+            phone or laptop and keeps working with the aeroplane wifi off. If a clip
+            ever fails to load the button falls back to your own device&rsquo;s voice
+            — and where that device has no Japanese installed, to the romaji, read in
+            an English accent. Hovering the speaker tells you which you are getting.
           </p>
         </Reveal>
       </div>

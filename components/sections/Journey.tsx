@@ -1,8 +1,14 @@
 import { DestinationCard } from "@/components/DestinationCard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { TransitRail } from "@/components/TransitRail";
 import { Torii, WaveBand } from "@/components/art/Motifs";
 import { Reveal } from "@/components/motion/Reveal";
 import { destinations, type Destination } from "@/data/destinations";
+import {
+  advisoryForChapter,
+  legsForChapter,
+  portCallForChapter,
+} from "@/data/transit";
 import { chapters, type Chapter, type ChapterKind } from "@/data/voyage";
 
 const byId = new Map(destinations.map((d) => [d.id, d]));
@@ -55,6 +61,12 @@ export function Journey() {
           >
             <div className="mx-auto max-w-6xl px-6 py-[clamp(3.5rem,7vw,6rem)]">
               <ChapterHeader chapter={chapter} />
+
+              <TransitRail
+                legs={legsForChapter(chapter.id)}
+                advisory={advisoryForChapter(chapter.id)}
+                portCall={portCallForChapter(chapter.id)}
+              />
 
               {stops.length > 0 ? (
                 <div className="mt-16 space-y-[clamp(4rem,8vw,7rem)]">

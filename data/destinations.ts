@@ -66,7 +66,7 @@ export const destinations: Destination[] = [
     day: "Day 2 · Tuesday, 20 July 2027",
     tagline: "The doors sigh open, someone bows, and Japan begins in traffic-cone orange.",
     story:
-      "The cabin doors sigh open and Terminal 1 takes you in — a long ribbon of glass and steel that has been receiving the world since 1978. You clear immigration beneath signage in four scripts, and the first thing that happens is not a stamp but a bow: the officer, the baggage attendant, the woman at the kiosk. Outside, Japan announces itself as heat, wet and cicada-loud. Then you find the curb, and there it is, unmistakable in traffic-cone orange — the Airport Limousine. A white-gloved loader weighs your case, tags it, hands you the stub, and bows to the departing bus. For the next ninety minutes you sleep and wake against the glass while Chiba dissolves into Tokyo Bay: container cranes standing like grazing herons, the long silver reach of the bridges. Then the doors open in Yokohama, and the air tastes of salt.",
+      "The cabin doors sigh open and Terminal 1 takes you in — a long ribbon of glass and steel that has been receiving the world since 1978. You clear immigration beneath signage in four scripts, and the first thing that happens is not a stamp but a bow: the officer, the baggage attendant, the woman at the kiosk. Outside, Japan announces itself as heat, wet and cicada-loud. Then you find the curb, and there it is, unmistakable in traffic-cone orange — the Airport Limousine. A white-gloved loader weighs your case, tags it, hands you the stub, and bows to the departing bus. For the next hour and forty minutes you sleep and wake against the glass while Chiba dissolves into Tokyo Bay: container cranes standing like grazing herons, the long silver reach of the bridges. Then the doors open in Yokohama, and the air tastes of salt.",
     myth: {
       title: "The Immovable Fire King of Narita",
       text:
@@ -269,7 +269,7 @@ export const destinations: Destination[] = [
       { term: "hamasangu", script: "浜参宮", meaning: "Seaside purification undertaken before visiting the Ise Grand Shrine" },
     ],
     dragonConnection:
-      "The pair who made the islands also fathered the sea-kami. Their rope hangs over the water you are sailing — and the dragon's own shrine waits two minutes east along this same shore path.",
+      "The pair who made the islands also fathered the sea-kami. Their rope hangs over the water you are sailing — and the dragon's own shrine waits three hundred metres east along this same shore path.",
     accent: "#D9A441",
     accentText: "#D4A246",
     image: meotoIwa,
