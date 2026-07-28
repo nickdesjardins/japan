@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Dragon } from "@/components/art/Dragon";
 import { Reveal } from "@/components/motion/Reveal";
@@ -50,9 +51,12 @@ export function DragonLore() {
 
         <Reveal stagger={70} className="mt-16 grid gap-px border border-kincha/20 bg-kincha/20 sm:grid-cols-2 lg:grid-cols-3">
           {thread.map((d, i) => (
-            <a
+            /* The card each of these points at lives on the day-by-day
+               chapter, which comes after this one — hence forward. */
+            <Link
               key={d.id}
-              href={`#${d.id}`}
+              href={`/journey#${d.id}`}
+              transitionTypes={["nav-forward"]}
               className="group flex flex-col p-7 transition-colors hover:bg-roiro"
               style={{ backgroundColor: "var(--color-kachi)" }}
             >
@@ -71,7 +75,7 @@ export function DragonLore() {
               <p className="mt-5 text-[0.62rem] uppercase tracking-[0.3em] text-nezu transition-colors group-hover:text-kincha">
                 {d.day.split("·")[0].trim()} →
               </p>
-            </a>
+            </Link>
           ))}
         </Reveal>
       </div>

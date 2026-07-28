@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Countdown } from "@/components/Countdown";
 import { Dragon } from "@/components/art/Dragon";
 import { Seigaiha, SunDisc, WaveBand } from "@/components/art/Motifs";
@@ -78,22 +79,25 @@ export function Hero() {
               ceiling in Asakusa.
             </p>
 
+            {/* Both go deeper into the voyage, so both slide leftward. */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="#journey"
+              <Link
+                href="/journey"
+                transitionTypes={["nav-forward"]}
                 className="group relative inline-flex items-center gap-3 bg-bengara px-7 py-3.5 text-sm font-medium tracking-wide text-shironeri transition-colors hover:bg-shu"
               >
                 Follow the route
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
                   →
                 </span>
-              </a>
-              <a
-                href="#lore"
+              </Link>
+              <Link
+                href="/lore"
+                transitionTypes={["nav-forward"]}
                 className="border-b border-kincha/40 pb-1 text-sm text-mizu transition-colors hover:border-kin hover:text-kin"
               >
                 Read the dragon lore first
-              </a>
+              </Link>
             </div>
           </Reveal>
 
@@ -121,9 +125,12 @@ export function Hero() {
       {/* Waves rolling along the bottom edge. */}
       <WaveBand className="absolute inset-x-0 bottom-0 -z-10 h-40 text-konjo/70" />
 
+      {/* Still an in-page scroll, not a navigation: it points at the pager
+          sitting just below the fold, which is where the reading order
+          actually continues. */}
       <a
-        href="#overview"
-        aria-label="Scroll to the voyage overview"
+        href="#continue"
+        aria-label="Scroll on to the next chapter"
         className="anim-float absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-kincha/70 transition-colors hover:text-kin"
       >
         <svg width="26" height="42" viewBox="0 0 26 42" fill="none" aria-hidden="true">

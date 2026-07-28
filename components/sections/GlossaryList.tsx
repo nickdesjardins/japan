@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { SpeakButton } from "@/components/SpeakButton";
+import { chapterIndex, navDirection } from "@/data/nav";
 
 export type GlossaryEntry = {
   term: string;
@@ -14,6 +17,12 @@ export type GlossaryEntry = {
 
 export function GlossaryList({ entries }: { entries: GlossaryEntry[] }) {
   const [query, setQuery] = useState("");
+  const pathname = usePathname();
+
+  /* Every "→ place" link points at a destination card, and those cards now
+     live on their own chapter. Asking the running order for the direction
+     keeps the slide honest even if the chapters are ever reordered. */
+  const toJourney = navDirection(pathname, chapterIndex("/journey"));
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -80,12 +89,13 @@ export function GlossaryList({ entries }: { entries: GlossaryEntry[] }) {
               {/* a second <dd> rather than a bare <a>: a dl's grouping div may
                   only contain dt and dd elements */}
               <dd className="mt-5">
-                <a
-                  href={`#${e.placeId}`}
+                <Link
+                  href={`/journey#${e.placeId}`}
+                  transitionTypes={[toJourney]}
                   className="text-[0.6rem] uppercase tracking-[0.26em] text-nezu transition-colors hover:text-kin"
                 >
                   {e.place} →
-                </a>
+                </Link>
               </dd>
             </div>
           ))}

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Shippori_Mincho_B1, Yuji_Syuku } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 /* Shippori Mincho B1 — a modern mincho with a beautifully drawn Latin set.
@@ -93,9 +95,15 @@ export default function RootLayout({
        recorders, translation tools) routinely stamp attributes onto <html>
        before React hydrates. Suppressing here covers only this element's own
        attributes, not the tree below it. */
+    /* data-scroll-behavior: as of Next 16 the router no longer neutralises
+       `scroll-behavior: smooth` during a navigation. Without this attribute
+       every chapter change would smooth-scroll back to the top *while* the
+       slide plays — two motions fighting. The attribute restores the old
+       behaviour: instant for navigation, smooth for in-page anchors. */
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${shippori.variable} ${manrope.variable} ${yuji.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-sumi text-shironeri">
@@ -108,7 +116,12 @@ export default function RootLayout({
             __html: `document.documentElement.classList.add("js")`,
           }}
         />
-        {children}
+        {/* Header and footer live in the layout so they survive a chapter
+            change: the router swaps only `children`, which is exactly the
+            part wrapped in a <ViewTransition>. */}
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

@@ -463,6 +463,91 @@ body {
 }
 
 /* ============================================================
+   Chapter transitions
+
+   Horizontal direction encodes position in the running order. Going further
+   along the voyage pushes the old chapter left and brings the new one in from
+   the right; going back mirrors it. The offset is deliberately small — 60px
+   is enough to read as direction without asking the eye to track something
+   flying across the viewport.
+
+   The fade is asymmetric on purpose: the old chapter leaves in 150ms so it
+   stops competing for attention, and the new one takes 210ms and waits for
+   that exit before it starts.
+   ============================================================ */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+  animation:
+    150ms ease-in both chapter-fade reverse,
+    400ms ease-in-out both chapter-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+  animation:
+    210ms ease-out 150ms both chapter-fade,
+    400ms ease-in-out both chapter-slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+  animation:
+    150ms ease-in both chapter-fade reverse,
+    400ms ease-in-out both chapter-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+  animation:
+    210ms ease-out 150ms both chapter-fade,
+    400ms ease-in-out both chapter-slide;
+}
+
+@keyframes chapter-fade {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes chapter-slide {
+  from {
+    translate: var(--slide-offset);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+/* The header and the drawer are the reader's fixed points. If they slid with
+   the content it would read as the whole viewport moving rather than the
+   chapter changing. `display: none` on the old snapshot avoids the flash of
+   two headers stacked while the new one fades in. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-group(chapter-drawer) {
+  animation: none;
+  z-index: 200;
+}
+::view-transition-old(chapter-drawer) {
+  display: none;
+}
+::view-transition-new(chapter-drawer) {
+  animation: none;
+}
+
+/* ============================================================
    Reduced motion — everything decorative stops, content still shows
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -486,5 +571,17 @@ body {
   }
   .draw-path {
     stroke-dashoffset: 0 !important;
+  }
+
+  /* The `*` rule above cannot reach these — view-transition pseudo-elements
+     live in the top layer and are not descendants of anything. A slide across
+     the whole viewport is the most common motion-sensitivity trigger of
+     anything on this site, so it has to be named explicitly. Zeroing the
+     duration leaves the browser's plain instant swap. */
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
