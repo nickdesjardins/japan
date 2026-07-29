@@ -27,31 +27,23 @@ export function TransitRail({
   const total = counted.reduce((sum, l) => sum + l.minutes, 0);
   const moves = counted.filter((l) => l.minutes > 0).length;
 
+  const summary =
+    moves === 0 ? (
+      "Nothing to catch"
+    ) : (
+      <>
+        <span className="tabular-nums text-kin">{moves}</span>{" "}
+        {moves === 1 ? "leg" : "legs"} ·{" "}
+        <span className="tabular-nums text-kin">{humanise(total)}</span> moving
+      </>
+    );
+
   return (
     <Reveal className="mt-12">
       <div className="border border-kincha/25 bg-roiro/55">
-        <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-kincha/20 px-5 py-4 sm:px-7">
-          <p className="flex items-baseline gap-3">
-            <span className="font-brush text-lg leading-none text-kincha" aria-hidden="true">
-              程
-            </span>
-            <span className="text-[0.62rem] uppercase tracking-[0.32em] text-nezu">
-              Every move you make today
-            </span>
-          </p>
-          <p className="text-[0.68rem] tracking-wide text-nezu">
-            {moves === 0 ? (
-              "Nothing to catch"
-            ) : (
-              <>
-                <span className="tabular-nums text-kin">{moves}</span>{" "}
-                {moves === 1 ? "leg" : "legs"} ·{" "}
-                <span className="tabular-nums text-kin">{humanise(total)}</span> moving
-              </>
-            )}
-          </p>
-        </header>
-
+        {/* Deliberately outside the fold. The boarding deadline and the day's
+            warning are the two things you would least want folded away, and a
+            collapsed day should still show you what time to be back. */}
         {portCall ? <PortCallBand call={portCall} /> : null}
 
         {advisory ? (
@@ -69,17 +61,61 @@ export function TransitRail({
           </p>
         ) : null}
 
-        <ol className="px-5 py-2 sm:px-7">
-          {legs.map((leg, i) => (
-            <Leg
-              key={`${leg.from}-${leg.to}-${i}`}
-              leg={leg}
-              last={i === legs.length - 1}
-            />
-          ))}
-        </ol>
+        {/* <details> rather than React state: it opens without JavaScript, it
+            is keyboard-operable and screen-reader-announced for free, and
+            ctrl-F still finds text inside a closed one in most browsers. */}
+        <details className="group">
+          <summary className="flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-5 py-4 transition-colors hover:bg-kincha/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-kin group-open:border-b group-open:border-kincha/20 sm:px-7 [&::-webkit-details-marker]:hidden">
+            <span className="flex items-baseline gap-3">
+              <span
+                className="font-brush text-lg leading-none text-kincha"
+                aria-hidden="true"
+              >
+                程
+              </span>
+              <span className="text-[0.62rem] uppercase tracking-[0.32em] text-nezu transition-colors group-hover:text-rikyu">
+                Every move you make today
+              </span>
+            </span>
+
+            <span className="flex items-baseline gap-3 text-[0.68rem] tracking-wide text-nezu">
+              {/* one flex item, not four — a bare fragment here would let the
+                  gap fall between "11", "legs ·" and "1 h 51 min" */}
+              <span>{summary}</span>
+              <Chevron className="h-3 w-3 shrink-0 translate-y-px text-kincha transition-transform duration-300 group-open:-rotate-180" />
+            </span>
+          </summary>
+
+          <ol className="px-5 py-2 sm:px-7">
+            {legs.map((leg, i) => (
+              <Leg
+                key={`${leg.from}-${leg.to}-${i}`}
+                leg={leg}
+                last={i === legs.length - 1}
+              />
+            ))}
+          </ol>
+        </details>
       </div>
     </Reveal>
+  );
+}
+
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.4}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m4 8 8 8 8-8" />
+    </svg>
   );
 }
 
@@ -97,13 +133,17 @@ function PortCallBand({ call }: { call: PortCall }) {
 
       <div className="mt-4 grid gap-px overflow-hidden border border-kincha/25 bg-kincha/25 sm:grid-cols-3">
         <Slot label={call.ashoreLabel ?? "Ashore from"} time={call.ashore} />
+        {/* Yours, not the ship's. At a tender port the ship's own deadline is
+            the boat leaving the pier, so that is what goes in the small line. */}
         <Slot
-          label={call.lastTender ? "Last tender back" : "All aboard"}
-          time={call.lastTender ?? call.allAboard}
+          label={call.beBackByLabel ?? "Be back by"}
+          time={call.beBackBy}
           urgent
-          /* At a tender port the boat is the deadline, so all-aboard becomes
-             the footnote rather than the headline. */
-          sub={call.lastTender ? `all aboard ${call.allAboard}` : undefined}
+          sub={
+            call.lastTender
+              ? `ship's last tender ${call.lastTender}`
+              : `ship's all aboard ${call.allAboard}`
+          }
         />
         <Slot label="Ship sails" time={call.sails} />
       </div>
@@ -111,6 +151,20 @@ function PortCallBand({ call }: { call: PortCall }) {
       {call.note ? (
         <p className="mt-4 text-[0.82rem] leading-[1.65] text-rikyu">{call.note}</p>
       ) : null}
+
+      {/* Stated once per port day rather than buried in one note, because it
+          is the thing that turns a missed deadline from expensive into final. */}
+      <p className="mt-4 border-t border-kincha/20 pt-4 text-[0.78rem] leading-[1.6] text-nezu">
+        <span className="text-rikyu">
+          The big number is ours, not the ship&rsquo;s — ninety minutes before she
+          sails rather than the thirty Princess asks for.
+        </span>{" "}
+        Princess sails on schedule and says in writing that she may do it with no
+        announcement; there is no last call. And on a Japan round trip Princess Japan
+        does not accept boarding at a later port, so there is nothing to catch her up
+        from. Both times here are derived from the published sailing time — the
+        binding one is in the Princess app and on the gangway sign that morning.
+      </p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MapLink } from "@/components/MapLink";
 import { ArrivalChain } from "@/components/TransitRail";
 import { Tilt } from "@/components/motion/Effects";
 import { Reveal } from "@/components/motion/Reveal";
@@ -85,6 +86,7 @@ export function DestinationCard({
             {/* the short answer to "how do I get here" — the day's rail above
                 carries the full chain, including everything either side */}
             <ArrivalChain legs={arrivalLegs(d.id)} />
+            <MapLink id={d.id} />
 
             <p
               className="mt-6 font-display text-[1.15rem] leading-[1.6] italic"

@@ -64,7 +64,6 @@ export const metadata: Metadata = {
     "Diamond Princess",
     "Ryujin",
     "dragon mythology",
-    "Enoshima",
     "Toba",
     "Kochi",
     "Nagasaki",

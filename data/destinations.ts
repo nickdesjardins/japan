@@ -2,10 +2,10 @@ import type { StaticImageData } from "next/image";
 
 import naritaArrival from "@/public/images/narita-arrival.jpg";
 import hyattYokohama from "@/public/images/hyatt-yokohama.jpg";
-import enoshimaDragonShrine from "@/public/images/enoshima-dragon-shrine.jpg";
-import enoshimaIwayaCaves from "@/public/images/enoshima-iwaya-caves.jpg";
 import yokohamaChinatown from "@/public/images/yokohama-chinatown.jpg";
+import yokohamaMasobyo from "@/public/images/yokohama-masobyo.webp";
 import osanbashiPier from "@/public/images/osanbashi-pier.jpg";
+import yeomijiGarden from "@/public/images/yeomiji-garden.webp";
 import meotoIwa from "@/public/images/meoto-iwa.jpg";
 import ryugushaShrine from "@/public/images/ryugusha-shrine.jpg";
 import katsurahamaBeach from "@/public/images/katsurahama-beach.jpg";
@@ -121,76 +121,14 @@ export const destinations: Destination[] = [
     imageAlt: "The Hyatt Regency Yokohama rising above the Minato Mirai waterfront.",
   },
   {
-    id: "enoshima-dragon-shrine",
-    name: "Enoshima Island — the Dragon Shrine & the Bell of Dragon's Love",
-    japaneseName: "江の島・江島神社・龍恋の鐘",
-    romaji: "Enoshima · Enoshima-jinja · Ryūren no Kane",
-    day: "Day 3 · Wednesday, 21 July 2027",
-    tagline: "An island a goddess raised from the seabed, and a bell two lovers ring together.",
-    story:
-      "You cross the long bridge from Katase with the sea on both sides and Enoshima rising ahead, green and steep. Through the bronze torii — cast in 1821 — the lane narrows into souvenir stalls and grilled-squid smoke, and then Zuishinmon stands over you in vermilion and gold, built deliberately in the shape of Ryūgū-jō, the dragon's palace under the sea. Above it the island unfolds shrine by shrine: a long stone climb, or the Escar, Japan's first outdoor escalator, four minutes against twenty. In the octagonal Hōan-den, behind glass in dim light, sit two Benzaiten — one eight-armed and bristling with weapons, one naked, serene and startlingly human. Higher still, past cedars loud with cicadas, the dragon hall crouches over the sea. Then the path drops to Lovers' Hill, where a small bronze bell hangs above Sagami Bay and every inch of fence is furred with padlocks.",
-    myth: {
-      title: "Benzaiten and the Five-Headed Dragon",
-      text:
-        "The Enoshima Engi, written in 1047 by the monk Kōkei, says that for a thousand years a five-headed dragon, Gozuryū, lived in a lake inland and terrorised the village of Koshigoe with floods, fire, and children taken. Then in 552 the sea boiled, the sky darkened, and an island rose out of the bay: Enoshima, made as a seat for the goddess Benzaiten, who descended onto it. The dragon saw her and asked her to marry him. She refused, and told him plainly what he was. Shamed by her eloquence, he swore to protect the people instead, turned to face her island and became a hill — Tatsu-no-kuchi, Dragon's Mouth. Popular retellings soften it: she accepts him once he has reformed.",
-    },
-    tradition:
-      "At Ryūren no Kane you ring the bell together — both of you with a hand on the rope, one stroke is enough. Then you write your two names on a padlock bought from the shops below and snap it shut on the wire fence among thousands of others. Couples who ring it together, the island promises, are never parted.",
-    didYouKnow:
-      "The eight-armed Benzaiten in the Hōan-den was given by Minamoto no Yoritomo in 1182, the year he prayed on this island for victory in the north.",
-    glossary: [
-      { term: "Enoshima-jinja", script: "江島神社", meaning: "One shrine in three halls: Hetsunomiya, Nakatsunomiya and Okutsunomiya" },
-      { term: "Ryūren no Kane", script: "龍恋の鐘", meaning: "\"Bell of the dragon's love\", hung on Lovers' Hill in 1996" },
-      { term: "Benzaiten", script: "弁財天", meaning: "Goddess of water, music, eloquence and wealth; Enoshima is her island" },
-      { term: "Wadatsumi-no-miya", script: "龍宮", meaning: "\"Dragon palace\" — the sea-dragon hall raised above the caves in 1993" },
-    ],
-    dragonConnection:
-      "The whole island is the dragon's love story: raised for Benzaiten, guarded by Gozuryū, who lies petrified across the mainland hills with his head at Tatsu-no-kuchi, still facing her.",
-    accent: "#B23A2E",
-    accentText: "#D66B61",
-    image: enoshimaDragonShrine,
-    imageAlt: "The Enoshima dragon shrine looking out over the Sagami Bay coastline.",
-  },
-  {
-    id: "enoshima-iwaya-caves",
-    name: "Enoshima Iwaya Sea Caves",
-    japaneseName: "江の島岩屋",
-    romaji: "Enoshima Iwaya",
-    day: "Day 3 · Wednesday, 21 July 2027",
-    tagline: "They hand you a candle at the cave mouth, and after that the light is yours.",
-    story:
-      "The path down the island's far side turns raw: black rock, a boardwalk pinned to the cliff, waves working underneath. At the entrance someone hands you a candle in a small holder, and you carry your own light into the First Cave — 152 metres of dripping stone that the sea cut and the earthquakes lifted clear of the water. The air goes cool and mineral. Rows of weathered stone figures watch from the walls, left by pilgrims across centuries. The passage forks: right, to a cramped inner sanctum said to be where Benzaiten first appeared and Enoshima Shrine began; left, into a tunnel local lore insists runs a hundred kilometres to an ice cave at the foot of Mount Fuji. The Second Cave is shorter and stranger. At the end of it a dragon waits in the dark. Clap, and it answers.",
-    myth: {
-      title: "The Grotto Where the Island Began",
-      text:
-        "Tradition holds that in 552, in the reign of Emperor Kinmei, an oracle directed that a shrine be raised in this grotto — the origin of Enoshima Shrine, and the place where Benzaiten took up residence. The caves became a site of severe practice. En no Gyōja, the mountain ascetic counted as the founder of Shugendō, is said to have trained here; so, later, are Kūkai, Ennin and Nichiren. In 1182 Minamoto no Yoritomo prayed in the cave before moving against Fujiwara no Hidehira in the north. By the Edo period this was mass pilgrimage: thousands came in by candlelight, exactly as you are about to.",
-    },
-    tradition:
-      "The candle is the whole ritual. You hold it low and steady, cup a hand around it at the draughty corners, and let your eyes go slack until the walls come forward and the carved faces surface out of the dark. Don't touch the stone — centuries of hands have already polished it. At the end you hand the light back; the flame stays in the cave.",
-    didYouKnow:
-      "Local lore says the left branch of the First Cave runs all the way to Narusawa Ice Cave at the foot of Mount Fuji, roughly 100 km away.",
-    glossary: [
-      { term: "Iwaya", script: "岩屋", meaning: "Rock grotto; a sea cave used as a place of worship" },
-      { term: "En no Gyōja", script: "役行者", meaning: "\"The ascetic En\" — 7th-century mountain mystic, founder of Shugendō" },
-      { term: "Kōbō Daishi", script: "弘法大師", meaning: "Posthumous name of Kūkai, founder of Shingon Buddhism" },
-      { term: "Ryūjin", script: "龍神", meaning: "The dragon god of the sea, master of the tides" },
-    ],
-    dragonConnection:
-      "On the rock directly above the First Cave stands Wadatsumi-no-miya, the sea-dragon's hall. You are inside the hill the dragon guards, walking toward the spot where Benzaiten came ashore.",
-    accent: "#C8A02E",
-    accentText: "#C7A02F",
-    image: enoshimaIwayaCaves,
-    imageAlt: "Visitors carrying candle lanterns through the Iwaya sea caves.",
-  },
-  {
     id: "yokohama-chinatown",
     name: "Yokohama Chinatown — Kanteibyō & the Fortune Hall",
     japaneseName: "横浜中華街・関帝廟",
     romaji: "Yokohama Chūkagai · Kanteibyō",
-    day: "Day 3 · Wednesday, 21 July 2027",
-    tagline: "Five sticks of incense for a war god, then a stranger reads your face.",
+    day: "Day 2 · Tuesday, 20 July 2027 · evening",
+    tagline: "Five sticks of incense for a war god, then a stranger reads your hand.",
     story:
-      "You come in under Chōyōmon, the eastern gate, painted the blue-green of an azure dragon, and the temperature of the day changes. Five hundred-odd kitchens are working at once: pork buns steaming in towers, roast duck lacquered in the windows, sugar and sesame and hot oil. Then, up a side street, gold explodes. Kanteibyō is all carved dragons and glazed tile, unapologetically loud after the cedar hush of Enoshima. You buy five sticks of incense, light them at the great censer, fan the flame out rather than blow it, and walk the burners in order. Afterwards you duck into a fortune hall — a curtained booth, a small table, a woman who studies your face carefully before she touches the cards. She reads the bones under your skin first, then the tarot. You will argue about it the whole way to the ship.",
+      "You come in under Chōyōmon, the eastern gate, painted the blue-green of an azure dragon, and the temperature of the evening changes. Five hundred-odd kitchens are working at once: pork buns steaming in towers, roast duck lacquered in the windows, sugar and sesame and hot oil. Overhead the lanterns come on in long red rows, which is the hour this street is built for. Then, up a side street, gold explodes. Kanteibyō is all carved dragons and glazed tile, floodlit after dark and unapologetically loud. You buy five sticks of incense, light them at the great censer, fan the flame out rather than blow it, and walk the burners in order. Afterwards you duck into a fortune hall — a curtained booth, a small table, a woman who turns your hand over and studies the palm before she touches the cards. Twenty minutes of tarot, and seven of the lines in your hand. You will argue about it over dinner, and again in the morning.",
     myth: {
       title: "Guan Yu, the God Merchants Trust",
       text:
@@ -203,7 +141,7 @@ export const destinations: Destination[] = [
     glossary: [
       { term: "Kanteibyō", script: "関帝廟", meaning: "\"Temple of Emperor Guan\" — Chinatown's central place of worship" },
       { term: "Chōyōmon", script: "朝陽門", meaning: "The blue east gate, guarded by Seiryū, the Azure Dragon of spring" },
-      { term: "Ninsō", script: "人相", meaning: "Face-reading; divination from the features and the bone beneath" },
+      { term: "Tesō", script: "手相", meaning: "Palm-reading; the lines of the hand, and what Airi actually offers alongside the tarot" },
       { term: "Uranai", script: "占い", meaning: "Fortune-telling; an uranai-kan 占い館 is a fortune-telling hall" },
     ],
     dragonConnection:
@@ -212,6 +150,38 @@ export const destinations: Destination[] = [
     accentText: "#DC6879",
     image: yokohamaChinatown,
     imageAlt: "The ornate painted gate and dragon roof carvings of Kanteibyo Temple.",
+  },
+  {
+    id: "yokohama-masobyo",
+    name: "Yokohama Masōbyō — the Temple of the Sea Goddess",
+    japaneseName: "橫濱媽祖廟",
+    romaji: "Yokohama Masobyō",
+    day: "Day 3 · Wednesday, 21 July 2027 · morning",
+    tagline: "Eight minutes from the hotel door, a goddess who calms water and brings sailors home.",
+    story:
+      "You come back into Chinatown at nine in the morning, when it belongs to the people who live in it — shutters going up, deliveries, the smell of stock pots rather than fryers. The temple is newer than everything around it and does not care: consecrated in 2006 with fire carried from the Grand Mazu Temple at Tainan, it goes up in tiers of glazed tile and gold, and there are dragons the entire length of the gate, along the roof ridge and around the balustrade. You buy five sticks of incense at the desk and walk the censers in order. And on a Wednesday morning the courtyard is not empty: a tai chi circle meets here at nine, an hour of very slow movement in the shade, and nobody minds if you join the back row or simply sit on the step and watch. Then you walk eight minutes back, collect the bags, and go and get on a ship. It is the correct order to do things in.",
+    myth: {
+      title: "Lin Moniang, Who Walked Out Over the Water",
+      text:
+        "Mazu was a real girl before she was a goddess. Lin Moniang was born on Meizhou island off Fujian around 960 — the silent one, they called her, because she did not cry as an infant. She could swim, which was rare, and she could read weather, which was rarer, and she stood on the shore in red so the fishing boats could find their way in. The story everyone tells is this: while she sat weaving, her mind went out to sea, where her father and brothers were caught in a storm, and she held them up. Her mother shook her awake. Her grip loosened, and her father drowned. She died young, and the sailors of the Fujian coast, who had watched her do impossible things, began praying to her instead of for her. A thousand years later she is Tianhou, Empress of Heaven, and there is a temple to her in every harbour the Chinese ever sailed into — including this one.",
+    },
+    tradition:
+      "Buy the five-stick set at the reception desk, light them at the great censer, and put the flame out by fanning rather than blowing. Then one stick to each of the five burners, in order. The courtyard is the temple, in practice: the incense, the dragons and the roof all work from it, which is just as well because these are raised-platform halls and there is usually a sill at the door.",
+    didYouKnow:
+      "The tai chi circle in the courtyard runs Wednesdays and Saturdays from nine, free, no booking, visitors welcome — and pauses for the whole of August. You are here in July, on a Wednesday.",
+    glossary: [
+      { term: "Mazu", script: "媽祖", meaning: "The sea goddess of the Chinese coast — protector of sailors, calmer of storms" },
+      { term: "Tenkō", script: "天后", meaning: "\"Empress of Heaven\" — Mazu's imperial title, and the name on many of her temples" },
+      { term: "Rin Mokunyō", script: "林默娘", meaning: "Lin Moniang, the Fujianese girl of the 10th century who became Mazu" },
+      { term: "Taikyokuken", script: "太極拳", meaning: "Tai chi — the slow-moving form practised in the courtyard on Wednesday mornings" },
+    ],
+    dragonConnection:
+      "You are asking the goddess of the sea for a safe crossing on the morning you board, under a gate carved end to end with her dragons. Watatsumi rules this water from below; Mazu is who you ask about it from above.",
+    accent: "#B8912F",
+    accentText: "#DCB44E",
+    image: yokohamaMasobyo,
+    imageAlt:
+      "One of Yokohama Chinatown's painted street gates, on the eight-minute walk down to the Mazu temple.",
   },
   {
     id: "osanbashi-pier",
@@ -238,7 +208,7 @@ export const destinations: Destination[] = [
       { term: "Hotaru no hikari", script: "蛍の光", meaning: "\"Light of the fireflies\" — the Japanese farewell song, played at castoff" },
     ],
     dragonConnection:
-      "The whale's back carries you to the water's edge, and beyond it the dragon king's country begins. Wadatsumi-no-miya at Enoshima this morning honoured the very god whose sea you now sail.",
+      "The whale's back carries you to the water's edge, and beyond it the dragon king's country begins. You spent the morning under Mazu's dragons asking the goddess of the sea for a safe crossing, which is precisely what this pier is for.",
     accent: "#2F6D7A",
     accentText: "#4198AA",
     image: osanbashiPier,
@@ -269,7 +239,7 @@ export const destinations: Destination[] = [
       { term: "hamasangu", script: "浜参宮", meaning: "Seaside purification undertaken before visiting the Ise Grand Shrine" },
     ],
     dragonConnection:
-      "The pair who made the islands also fathered the sea-kami. Their rope hangs over the water you are sailing — and the dragon's own shrine waits three hundred metres east along this same shore path.",
+      "The pair who made the islands also fathered the sea-kami. Their rope hangs over the water you are sailing — and the dragon's own shrine waits two hundred metres east along this same shore path.",
     accent: "#D9A441",
     accentText: "#D4A246",
     image: meotoIwa,
@@ -343,9 +313,9 @@ export const destinations: Destination[] = [
     japaneseName: "海津見神社（桂浜龍王宮）",
     romaji: "Watatsumi-jinja / Katsurahama Ryūō-gū",
     day: "Day 5 · Friday, 23 July 2027",
-    tagline: "Climb the cliff stair to a red torii and a dragon king who rules the tides.",
+    tagline: "A red torii on the far cape, and a dragon king who rules the tides.",
     story:
-      "At the far end of the beach a small bridge crosses to Ryūō-misaki, and then the stone steps begin. They are steep, salt-worn, walled in by wind-cut green, and they climb the rock in short flights until the vermillion torii opens onto nothing but sky and water. The hall is tiny. The view is enormous — the whole crescent behind you, the Pacific in front, the surf working the cliff directly beneath your feet. Ōwatatsumi-no-kami is enshrined here: safety at sea, full nets, rain when the fields want it, and, they add, good marriages. Fishermen out of Urado have asked here for centuries; tradition credits the Chōsokabe lords with founding it. There is usually no priest. You drop coins in the box, bow into the wind, and the sea answers by hitting the rocks.",
+      "At the far end of the beach a small bridge crosses to Ryūō-misaki, and then the stone steps begin — steep, salt-worn, walled in by wind-cut green, climbing the rock in short flights until the vermillion torii opens onto nothing but sky and water. You are not going up them. From the Ryōma viewpoint at the other end of the crescent, reached by a ramp rather than a stair, you can see the whole thing: the red torii on the rock, the tiny hall beside it, and the surf working the cliff underneath. Dragon's head looking at dragon king, the length of the beach between. Ōwatatsumi-no-kami is enshrined here: safety at sea, full nets, rain when the fields want it, and, they add, good marriages. Fishermen out of Urado have asked here for centuries; tradition credits the Chōsokabe lords with founding it. There is usually no priest. You drop coins in the box, bow into the wind, and the sea answers by hitting the rocks.",
     myth: {
       title: "The Dragon Who Keeps the Tides",
       text:
@@ -431,6 +401,37 @@ export const destinations: Destination[] = [
     imageAlt: "The volcanic multi-coloured sand and basalt cliffs of Jungmun Saekdal beach.",
   },
   {
+    id: "yeomiji-garden",
+    name: "Yeomiji Botanical Garden, Jungmun",
+    japaneseName: "여미지식물원",
+    romaji: "Yeomiji Sikmurwon",
+    day: "Day 7 · Sunday, 25 July 2027",
+    tagline: "A glass dome on a volcano, with thirty degrees kept firmly on the other side of it.",
+    story:
+      "This is the day the itinerary stops asking anything of you. Jeju in late July is thirty degrees and wet air, and the walk from the ship to the immigration hall alone is more than a kilometre of corridor — twice, because you come back the same way. So there is one stop, and it has a lift in it. Yeomiji opened in 1989 under a glass dome thirty-eight metres high, and inside are the houses: tropical, where banana leaves go up past your head and the air is deliberately warm; the flower garden; the water garden with its channels and fountains. The paths run at two to six degrees, there are benches, and they will lend you a wheelchair at the gate for nothing whether or not you think you need one. Outside, the world gardens — Japanese, Korean, Italian, French — are stairs and steep gravel, and you are not going into any of them. You sit under the glass, in the cool, on the one day of the voyage with nothing to climb.",
+    myth: {
+      title: "Seolmundae Halmang, Who Made the Island",
+      text:
+        "Jeju does not have a dragon king. It has a giantess. Seolmundae Halmang was so tall she used Hallasan as a pillow and rested her feet in the sea, and she made the island by carrying apronfuls of earth and letting it fall — the three hundred-odd oreum, the small volcanic cones scattered across Jeju, are said to be what dropped through the holes in her skirt. She had five hundred sons. In the version everyone tells, she fell into the porridge she was cooking for them and they ate it without knowing, and when they understood they turned to stone. Whether she drowned testing the depth of a bottomless pool depends on who is telling it. What is consistent is the scale: on Jeju the land itself is the body of somebody who is no longer here.",
+    },
+    tradition:
+      "Korean gardens and parks are for walking slowly in company, and nobody hurries. Borrowing a wheelchair is unremarkable here — the garden keeps a stack of them by the gate and hands them over without ceremony or paperwork, which is worth knowing if either of you has been quietly rationing energy all week.",
+    didYouKnow:
+      "The dome is 38 metres high, and there is a lift to the top of it — which on this itinerary makes it the only viewpoint you reach without climbing anything.",
+    glossary: [
+      { term: "Sikmurwon", script: "식물원", meaning: "Botanical garden — the word on the sign, and on the taxi instruction" },
+      { term: "Jeongmun", script: "정문", meaning: "Main gate — ask for this, not the car park, which is a ten-degree slope" },
+      { term: "Oreum", script: "오름", meaning: "Jeju's small volcanic cones — what fell through the giantess's skirt" },
+      { term: "Hallasan", script: "한라산", meaning: "The volcano at the island's centre, and the giantess's pillow" },
+    ],
+    dragonConnection:
+      "This is the one day the thread goes quiet, and it is worth saying so rather than inventing a link. Jeju's dragon is Yongduam, the head of a dragon frozen mid-roar in black lava — and it is an hour away on the north coast, which under the rules of this trip puts it out of reach. The sea god gets the day off.",
+    accent: "#2E7D5B",
+    accentText: "#6FC49B",
+    image: yeomijiGarden,
+    imageAlt: "Inside the glass dome at Yeomiji — tropical planting, a water channel and the roof struts overhead.",
+  },
+  {
     id: "cheonjeyeon-waterfall",
     name: "Cheonjeyeon Waterfall",
     japaneseName: "천제연폭포 (天帝淵瀑布)",
@@ -438,7 +439,7 @@ export const destinations: Destination[] = [
     day: "Day 7 · Sunday, 25 July 2027",
     tagline: "Three falls, a pond twenty-one metres deep, and seven nymphs who come down at midnight.",
     story:
-      "The path drops into a gorge so green the light turns underwater. Warm-temperate forest closes over you — ferns wedged into rock seams, vines, birds you cannot name — and the air loses ten degrees in a hundred steps. The first fall comes off a cliff twenty-two metres up into a pond that goes down twenty-one more, jade at the rim and black in the middle, cold enough to ache your fingers. Downstream a second fall throws thirty metres of white water into the ravine, and a third runs out to the sea. Over the gorge arches Seonimgyo, and along its flank, carved in stone, seven women fly in trailing ribbons with instruments in their hands. You climb to the bridge at dusk. The gorge exhales. Standing there, it is very easy to believe the story.",
+      "Below you the path drops into a gorge so green the light turns underwater — warm-temperate forest, ferns wedged into rock seams, vines, birds you cannot name, and air ten degrees cooler than the road. The first fall comes off a cliff twenty-two metres up into a pond that goes down twenty-one more, jade at the rim and black in the middle. Downstream a second throws thirty metres of white water into the ravine, and a third runs out to the sea. You are staying at the top. Over the gorge arches Seonimgyo, and along its flank, carved in stone, seven women fly in trailing ribbons with instruments in their hands — and the bridge is the thing worth coming for. Ask at the western gate, the one on the Yeomiji side, whether you can reach it without steps. If they say yes, cross it, look down at the second fall, and come back. If they hesitate at all, don't.",
     myth: {
       title: "The Seven Nymphs and the Pond of the Emperor of Heaven",
       text:

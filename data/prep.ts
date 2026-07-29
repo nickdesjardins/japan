@@ -19,7 +19,7 @@ export const prepVideos: PrepVideo[] = [
     title: "Japan Shrine Manners | DONT make FOREIGNER MISTAKES",
     channel: "Paolo fromTOKYO",
     heading: "Shrine Etiquette: Bow, Rinse, Clap, Bow",
-    why: "This trip is shrine-heavy: Enoshima's dragon shrine, Ryugusha in Toba, Ryūō-gū at Katsurahama. Paolo walks the full sequence, from the torii bow and temizuya rinse to coin, two bows, two claps, one bow.",
+    why: "This trip is shrine-heavy: Ryugusha in Toba, Ryūō-gū at Katsurahama, the Chinatown temples in Yokohama. Paolo walks the full sequence, from the torii bow and temizuya rinse to coin, two bows, two claps, one bow.",
   },
   {
     id: "ydfskwks_dI",
@@ -47,7 +47,7 @@ export const prepVideos: PrepVideo[] = [
     title: "Your Ultimate Guide to Collecting Goshuin Stamps In Japan",
     channel: "Anne in Wonderland",
     heading: "Goshuin: The Souvenir Worth Collecting",
-    why: "Buy a goshuincho and each shrine or temple hand-brushes a calligraphy stamp. Senso-ji, Enoshima and Sofuku-ji all offer them. This explains the etiquette, the cost, and why it beats anything from a gift shop.",
+    why: "Buy a goshuincho and each shrine or temple hand-brushes a calligraphy stamp. Senso-ji and Sofuku-ji both offer them. This explains the etiquette, the cost, and why it beats anything from a gift shop.",
   },
   {
     id: "VbaF-qg0WSU",
@@ -85,9 +85,9 @@ export const customs: Custom[] = [
   {
     name: "Collecting a goshuin",
     script: "御朱印 · goshuin",
-    where: "Enoshima, Ryūgūsha, Ryūō, Sōfuku-ji, Sensō-ji",
+    where: "Ryūgūsha, Ryūō, Sōfuku-ji, Sensō-ji",
     steps: [
-      "Buy the book first — a goshuinchō, around ¥1,500–2,000 at any shrine office. Enoshima is your first chance.",
+      "Buy the book first — a goshuinchō, around ¥1,500–2,000 at any shrine office. Futami Okitama in Toba is your first chance.",
       "Pray at the hall before you ask. The stamp records a visit you actually made, so the visit comes first.",
       "Find the desk marked 御朱印 or 授与所, open the book flat to the next blank page, and hand it over with both hands: goshuin o onegaishimasu.",
       "Leave ¥300–500 in coins on the tray, then wait quietly — it is written by hand and takes a few minutes.",
