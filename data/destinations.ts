@@ -8,6 +8,8 @@ import osanbashiPier from "@/public/images/osanbashi-pier.jpg";
 import yeomijiGarden from "@/public/images/yeomiji-garden.webp";
 import meotoIwa from "@/public/images/meoto-iwa.jpg";
 import ryugushaShrine from "@/public/images/ryugusha-shrine.jpg";
+import tobaRyugujoBoat from "@/public/images/toba-ryugujo-boat.jpg";
+import tobaAquarium from "@/public/images/toba-aquarium.jpg";
 import katsurahamaBeach from "@/public/images/katsurahama-beach.jpg";
 import ryuotsuShrine from "@/public/images/ryuotsu-shrine.webp";
 import kanmonStraits from "@/public/images/kanmon-straits.webp";
@@ -275,6 +277,68 @@ export const destinations: Destination[] = [
     accentText: "#D66B61",
     image: ryugushaShrine,
     imageAlt: "Ryugusha, the small vermillion sea-dragon shrine standing at the tideline.",
+  },
+  {
+    id: "toba-ryugujo-boat",
+    name: "The Ryugu-jo — the Dragon Palace, Afloat",
+    japaneseName: "鳥羽湾めぐり遊覧船「龍宮城」",
+    romaji: "Toba-wan Meguri Yūransen: Ryūgū-jō",
+    day: "Day 4 · Thursday, 22 July 2027",
+    tagline: "Every other place on this trip points at the dragon's palace. This one is the palace.",
+    story:
+      "You come down the covered ramp onto a floating pontoon that rises and falls with the tide, step over one raised threshold with a hand under your elbow, and sit down at the back of the lower cabin. Then you look up through the window and understand what you have got on. The superstructure above you is a castle — tiered roofs with upturned corners, vermillion and white and gold, the whole thing built to be Ryūgū-jō, the palace on the seabed. Standing out on the roofline are two figures: a fisherman in a straw hat, and beside him a woman in court robes. Urashima Tarō and Princess Otohime, riding above Toba Bay at a steady twelve knots. The engine takes hold, the pier slides away, and for thirty-five minutes the bay opens out — pearl rafts in rows, pine islands, the far shoulder of the Shima peninsula. The boat calls at Dolphin Island on the way. Stay in your seat. The castle is on the outside of this thing, which means you have already seen the best of it and never once climbed a stair.",
+    myth: {
+      title: "The Box He Was Told Not to Open",
+      text:
+        "Urashima Tarō saved a turtle on the beach, and the turtle carried him down to Ryūgū-jō, where Otohime kept him for what felt like three days of feasting. When he asked to go home she gave him a lacquered box — the tamatebako — and made him promise never to lift the lid. He surfaced to find three hundred years gone: his village rebuilt, his parents long dead, nobody who knew his name. Alone on a shore he no longer recognised, he opened the box. What came out of it was white smoke, and the smoke was every one of the three hundred years he had been spared. He aged them all in a breath and turned to dust. The story is usually told as a warning against curiosity. It reads better as a story about the price of a holiday in a place where time does not run — which is worth thinking about, gently, while sitting inside a replica of the building it happened in.",
+    },
+    tradition:
+      "Japanese vessels carry a spirit in the hull. Funadama-sama is enshrined at the mast step when a boat is built — a female deity, and the offerings sealed in with her are specific and strange: a pair of dice, a few coins, a woman's hair, and rouge. Shipwrights still do it. She is said to warn the crew of bad weather with a sound like a moan in the timbers, and she is the reason a Japanese boat gets bowed to rather than merely boarded.",
+    didYouKnow:
+      "She carries 360 passengers and runs the loop in about fifty minutes, every half hour through the summer — and the operator asks you to be at the pier fifteen minutes before she goes.",
+    glossary: [
+      { term: "yūransen", script: "遊覧船", meaning: "pleasure boat — a sightseeing vessel rather than a ferry" },
+      { term: "tamatebako", script: "玉手箱", meaning: "the jewelled box Otohime gave Urashima, holding his lost years" },
+      { term: "Otohime", script: "乙姫", meaning: "the dragon king's daughter; the figure standing on this boat's roof" },
+      { term: "funadama", script: "船霊", meaning: "the boat spirit sealed into a Japanese hull at building" },
+    ],
+    dragonConnection:
+      "Not a shrine to the dragon king, not a gate in his name, not a hall borrowing his address. For thirty-five minutes on this Thursday morning you are aboard the Dragon Palace itself, with the two people from the story standing on the roof above your head.",
+    accent: "#2E8C8C",
+    accentText: "#49B3B3",
+    image: tobaRyugujoBoat,
+    imageAlt: "The Ryugu-jo sightseeing boat, built as a tiered vermillion castle, crossing Toba Bay.",
+  },
+  {
+    id: "toba-aquarium",
+    name: "Toba Aquarium & the Sea of Mermaids",
+    japaneseName: "鳥羽水族館・人魚の海",
+    romaji: "Toba Suizokukan · Ningyo no Umi",
+    day: "Day 4 · Thursday, 22 July 2027",
+    tagline: "The only dugong in Japan, in a tank named for the legend she is blamed for starting.",
+    story:
+      "The boat sets you down and the doors take you in out of the heat, and the temperature drop is the first good thing that happens. This is one of the largest aquariums in the country and it has no fixed route through it — the map is a suggestion, the arrows point both ways, and you are meant to wander. So go left, to the zone called Ningyo no Umi, the Sea of Mermaids. Behind the glass, moving with the particular unhurried heft of something that has never needed to hurry, is Serena. She is a dugong, she is the only one in Japan, and she came here on 15 April 1987 — which by last spring made thirty-nine years, the longest any dugong has ever been kept anywhere. She grazes seagrass laid out for her by divers. She rolls. She is enormous and she is entirely uninterested in you. Sailors squinting at animals like her, upright at the surface with a calf held to the chest, is where a great deal of mermaid folklore comes from — and this aquarium is quietly making that argument by what it chose to call the room.",
+    myth: {
+      title: "The Nun Who Lived Eight Hundred Years",
+      text:
+        "A Japanese ningyo is not the mermaid of European postcards. Old records describe something closer to a monster — a fish body with a human face, a mouth of small teeth, a voice like a skylark — and an omen: to see one was to expect war or calamity. But its flesh conferred impossible life. In the best-known telling a fisherman brings home a strange catch, his guests recognise it and quietly refuse to eat, and his young daughter, knowing nothing, finishes her portion. She stops ageing. She marries, and buries her husband; marries again, and buries him too. Eventually she shaves her head, becomes a nun, and walks Japan for eight hundred years planting camellias, until she asks at last to be allowed to die. They call her Yao Bikuni, the eight-hundred-year nun, and towns from Fukui to Wakasa still show you her cave.",
+    },
+    tradition:
+      "Japanese aquariums keep public diaries. Keepers post daily — what an animal ate, what it refused, what it did that was funny — and an animal's arrival date is celebrated the way a birthday is. Serena's is 15 April, and the staff mark it by taking a hand-lettered sign into the tank with her and presenting the seagrass she likes best, underwater, while people watch through the glass. It is not done for the visitors. It is done because thirty-nine years is a long time to look after somebody.",
+    didYouKnow:
+      "The oarfish is called ryūgū-no-tsukai — Messenger of the Dragon Palace. It lives a kilometre down, is sometimes eleven metres long, and washes ashore before earthquakes often enough that Japan has never entirely stopped taking the omen seriously.",
+    glossary: [
+      { term: "ningyo", script: "人魚", meaning: "\"person-fish\" — the Japanese merfolk, an omen rather than a beauty" },
+      { term: "jugon", script: "ジュゴン", meaning: "dugong; the seagrass-grazing sea cow behind the mermaid stories" },
+      { term: "Yao Bikuni", script: "八百比丘尼", meaning: "the nun who ate ningyo flesh and could not stop living" },
+      { term: "ryūgū-no-tsukai", script: "リュウグウノツカイ", meaning: "the oarfish — literally Messenger of the Dragon Palace" },
+    ],
+    dragonConnection:
+      "The building is full of the dragon king's household. His messenger is the oarfish, hanging in the deep-sea gallery. His palace is the boat you arrived on. And the mermaid the room is named for turns out, on inspection, to be a large grey herbivore who has been eating seagrass here since 1987.",
+    accent: "#1E6E7E",
+    accentText: "#4CA6B8",
+    image: tobaAquarium,
+    imageAlt: "Serena the dugong grazing in the Sea of Mermaids tank at Toba Aquarium.",
   },
   {
     id: "katsurahama-beach",

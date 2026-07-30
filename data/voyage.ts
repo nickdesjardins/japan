@@ -17,7 +17,7 @@ export const voyage = {
 
 export const voyageStats = [
   { value: 11, label: "days", note: "19–29 July 2027", suffix: "" },
-  { value: 20, label: "places", note: "shrines, temples, beaches, gates", suffix: "" },
+  { value: 22, label: "places", note: "shrines, temples, beaches, gates", suffix: "" },
   { value: 4, label: "ports of call", note: "plus one strait, sailed slowly", suffix: "" },
   { value: 7, label: "nights aboard", note: "balcony stateroom, port side", suffix: "" },
   { value: 2, label: "countries", note: "Japan and South Korea", suffix: "" },
@@ -87,7 +87,7 @@ export const chapters: Chapter[] = [
     kind: "port",
     headline: "Two rocks, a rope, and the Dragon Palace itself",
     note: "Up at seven, because everything outdoors today happens before nine. Ashore by tender and ten minutes west by taxi to the wedded rocks — the husband rock, the wife rock, thirty-five metres of rice-straw rope slung between them, and frogs the whole length of the path, because kaeru means both frog and safe return. The shrine office opens at seven, so the fortunes come out of a frog's mouth while the promenade is still in shade. Then two hundred flat metres east to the little vermillion shrine named for the dragon king's palace. Back for a boat that was built to be that palace, and the air-conditioned aquarium it sets you down beside.",
-    stops: ["meoto-iwa", "ryugusha-shrine"],
+    stops: ["meoto-iwa", "ryugusha-shrine", "toba-ryugujo-boat", "toba-aquarium"],
   },
   {
     id: "day-5",
@@ -159,7 +159,7 @@ export const chapters: Chapter[] = [
     kind: "city",
     headline: "You become other people for an afternoon",
     note: "Alongside at 06:30 — but berthing is not walking off. Disembarkation goes by luggage-tag colour from about half past eight, so you are off the ship around then and in Asakusa by a quarter to eleven. Then three hours of white makeup, silk, lacquered armour and a camera, booked for eleven rather than half past ten so the morning has somewhere to slip. The window in the room does the rest after dark: the temple floodlit below, the Skytree changing colour past the river.",
-    stops: ["cocomo-makeover", "asakusa-view-hotel"],
+    stops: ["asakusa-view-hotel", "cocomo-makeover"],
   },
   {
     id: "day-11",

@@ -33,7 +33,7 @@ export function Journey() {
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             seal="旅"
-            eyebrow="Eleven days, twenty places"
+            eyebrow="Eleven days, twenty-two places"
             title="The whole journey, in order"
             lead={
               <>

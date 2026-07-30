@@ -44,7 +44,7 @@ export const chapters: Chapter[] = [
     label: "Day by day",
     script: "旅",
     reading: "tabi",
-    blurb: "Eleven days, twenty places",
+    blurb: "Eleven days, twenty-two places",
   },
   {
     href: "/traditions",

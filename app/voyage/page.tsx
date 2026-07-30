@@ -7,7 +7,7 @@ import { PreDeparture } from "@/components/sections/PreDeparture";
 export const metadata: Metadata = {
   title: "The voyage",
   description:
-    "The shape of the route: eleven days, twenty places, from Yokohama around Japan and Jeju aboard the Diamond Princess — and everything to sort out before the taxi comes.",
+    "The shape of the route: eleven days, twenty-two places, from Yokohama around Japan and Jeju aboard the Diamond Princess — and everything to sort out before the taxi comes.",
 };
 
 export default function VoyagePage() {

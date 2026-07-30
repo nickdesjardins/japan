@@ -432,6 +432,7 @@ export const transitDays: TransitDay[] = [
         distance: "200 m",
         depart: "11:27",
         arrive: "11:32",
+        arrivesAt: "osanbashi-pier",
         note:
           "Taxi rank, ticket counter, immigration lobby and CIQ Plaza are all on 2F — there is no level change here at all, and the terminal is lifts and ramps throughout. Only the car park is on 1F.",
       },
@@ -445,7 +446,6 @@ export const transitDays: TransitDay[] = [
         minutes: 25,
         depart: "11:32",
         arrive: "11:57",
-        arrivesAt: "osanbashi-pier",
         note:
           "Do this now, not later. Once you have checked in you cannot come back ashore, and the rooftop is on the wrong side of that line — which is exactly the mistake the earlier version of this day made by putting you aboard at a quarter past eleven. Twenty-five minutes rather than thirty is the only thing the fortune reading cost this morning, and the roof is open around the clock if you would rather have it back.",
       },
@@ -551,6 +551,7 @@ export const transitDays: TransitDay[] = [
         distance: "7.5 km",
         depart: "07:35",
         arrive: "07:45",
+        arrivesAt: "meoto-iwa",
         note:
           "The shrine's own access page gives 7.5 km and about ten minutes at ¥2,500–3,000; the original planning document said fifteen. Either way it is comfortably inside the drive rule, and the sandō is deliberately thin gravel kept shallow for wheelchairs.",
       },
@@ -562,7 +563,6 @@ export const transitDays: TransitDay[] = [
         minutes: 50,
         depart: "07:45",
         arrive: "08:35",
-        arrivesAt: "meoto-iwa",
         means:
           "The shore path west to east: the husband rock nine metres out with its little torii, the wife rock beside him, and thirty-five metres of braided rice-straw rope slung between them over open water. Frog after frog after frog along the way — Sarutahiko's messengers, and a pun, because kaeru means both \"frog\" and \"to return\". Draw the kaeru-mikuji at the shrine office, tugging the slip out of a frog's mouth.",
         note:
@@ -656,6 +656,7 @@ export const transitDays: TransitDay[] = [
         minutes: 35,
         depart: "10:00",
         arrive: "10:35",
+        arrivesAt: "toba-ryugujo-boat",
         note:
           "This is the whole voyage's theme, afloat and seated: not a shrine to the dragon king but his palace, with the story's two characters on the roof. The castle is on the outside, so you get all of it from your seat and from the pier — the 2F Otohime throne room and the 3F deck are stairs only and cost you nothing to skip. The boat calls at Dolphin Island on the way; stay aboard. The full loop is about fifty minutes, of which this is the long leg.",
         caution:
@@ -671,6 +672,7 @@ export const transitDays: TransitDay[] = [
         minutes: 15,
         depart: "10:35",
         arrive: "10:50",
+        arrivesAt: "toba-aquarium",
         note:
           "Not five minutes. Disembarking a full sightseeing boat down a floating pontoon takes as long as boarding it did, and there is a ticket window at the far end of it. The aquarium has been open since 09:30, so nothing here is waiting on you.",
       },
@@ -685,7 +687,7 @@ export const transitDays: TransitDay[] = [
         depart: "10:50",
         arrive: "12:50",
         note:
-          "Sixteen wheelchairs and three electric carts are lent free at the door, no reservation and nobody thinks anything of it. There is deliberately no fixed route, so take the short version: H zone for Serena the dugong — the animal Japan credits as the origin of the mermaid — then marine mammals, then the seated indoor sea-lion show, then the Ancient Sea. Skip Jungle World and Japanese Rivers. Lunch inside around 11:45, before the crowd. And look for the ryūgū-no-tsukai if it is in: the oarfish, whose name means Messenger of the Dragon Palace.",
+          "Sixteen wheelchairs and three electric carts are lent free at the door, no reservation and nobody thinks anything of it. There is deliberately no fixed route, so take the short version: first 人魚の海, the Sea of Mermaids, for Serena — the only dugong in Japan, in the tank the aquarium named for the legend she is supposed to have started, and as of April 2026 thirty-nine years in residence, which is the world record. Then marine mammals, then the seated indoor sea-lion show, then the Ancient Sea. Skip Jungle World and Japanese Rivers. Lunch inside around 11:45, before the crowd. And look for the ryūgū-no-tsukai if it is in: the oarfish, whose name means Messenger of the Dragon Palace.",
         caution:
           "Two things. Ramps run throughout but the aquarium's own page is honest that a few spots still need stairs and a few tanks cannot be approached — that is normal here, turn round and go another way. And the sea-lion show runs to fixed times that are posted at the entrance and change with the season: read the board on the way in and build the two hours around it, rather than hoping to walk into one.",
       },
@@ -1016,13 +1018,13 @@ export const transitDays: TransitDay[] = [
         distance: "10.6 km",
         depart: "08:50",
         arrive: "09:08",
+        arrivesAt: "cheonjeyeon-waterfall",
         note: "Roughly ₩15,000–20,000. No need to hold this car — Jungmun is a resort with hotels on every corner and cars circulating all day, so you hail the next one when you are ready.",
       },
       {
         mode: "stay",
         from: "Cheonjeyeon Falls",
         to: "Seonimgyo, and the seven who come down at midnight",
-        arrivesAt: "cheonjeyeon-waterfall",
         means:
           "₩2,500 each. Cross the arch over the gorge and look down on the second falls — thirty metres of white water into a ravine ten degrees cooler than the road. Along the bridge's flank, carved in stone, seven heavenly women fly in trailing ribbons with instruments in their hands.",
         duration: "40 min",
@@ -1456,7 +1458,7 @@ export const transitDays: TransitDay[] = [
         depart: "10:45",
         arrive: "10:48",
         arrivesAt: "asakusa-view-hotel",
-        note: "Check-in is not until 15:00, but the bell desk takes the bags now and again after check-out tomorrow.",
+        note: "A bag drop rather than a check-in — the room is not yours until 15:00, but the bell desk takes the cases now, and again after check-out tomorrow.",
       },
       {
         mode: "walk",
@@ -1850,12 +1852,25 @@ export function advisoryForChapter(chapterId: string): string | undefined {
 const byDestination = new Map<string, TransitLeg[]>();
 for (const day of transitDays) {
   let sinceLastStop: TransitLeg[] = [];
+  let justArrived = false;
   for (const leg of day.legs) {
     if (leg.aside) continue;
+
+    /* The visit itself is not part of getting anywhere. Once a leg has
+       delivered you somewhere, the `stay` rows that immediately follow are
+       you standing in that place — so they belong to neither chain, and
+       counting them made the aquarium read "2 h 15 min from the pier" when
+       the pier is a fifteen-minute walk away. Waiting rows that are genuinely
+       part of a journey — border clearance, a disembarkation lounge — do not
+       follow an arrival, so they still count. */
+    if (justArrived && leg.mode === "stay") continue;
+    justArrived = false;
+
     sinceLastStop.push(leg);
     if (leg.arrivesAt) {
       byDestination.set(leg.arrivesAt, sinceLastStop);
       sinceLastStop = [];
+      justArrived = true;
     }
   }
 }
