@@ -125,10 +125,10 @@ export const destinations: Destination[] = [
     name: "Yokohama Chinatown — Kanteibyō & the Fortune Hall",
     japaneseName: "横浜中華街・関帝廟",
     romaji: "Yokohama Chūkagai · Kanteibyō",
-    day: "Day 2 · Tuesday, 20 July 2027 · evening",
-    tagline: "Five sticks of incense for a war god, then a stranger reads your hand.",
+    day: "Day 2 · Tuesday evening — and back on Wednesday morning",
+    tagline: "Five sticks of incense for a war god, and a stranger reads your hand in the morning.",
     story:
-      "You come in under Chōyōmon, the eastern gate, painted the blue-green of an azure dragon, and the temperature of the evening changes. Five hundred-odd kitchens are working at once: pork buns steaming in towers, roast duck lacquered in the windows, sugar and sesame and hot oil. Overhead the lanterns come on in long red rows, which is the hour this street is built for. Then, up a side street, gold explodes. Kanteibyō is all carved dragons and glazed tile, floodlit after dark and unapologetically loud. You buy five sticks of incense, light them at the great censer, fan the flame out rather than blow it, and walk the burners in order. Afterwards you duck into a fortune hall — a curtained booth, a small table, a woman who turns your hand over and studies the palm before she touches the cards. Twenty minutes of tarot, and seven of the lines in your hand. You will argue about it over dinner, and again in the morning.",
+      "You come in under Chōyōmon, the eastern gate, painted the blue-green of an azure dragon, and the temperature of the evening changes. Five hundred-odd kitchens are working at once: pork buns steaming in towers, roast duck lacquered in the windows, sugar and sesame and hot oil. Overhead the lanterns are already lit in long red rows, which is the hour this street is built for. Then, up a side street, gold explodes. Kanteibyō is all carved dragons and glazed tile, floodlit after dark and unapologetically loud. You buy five sticks of incense, light them at the great censer, fan the flame out rather than blow it, and walk the burners in order. Then supper, and bed. The fortune hall keeps until tomorrow — Airi opens at ten, and on Wednesday morning you walk back into these same lanes from the sea goddess's temple two streets south and are the first customers through the door. A curtained booth, a small table, a woman who turns your hand over and studies the palm before she touches the cards. Twenty minutes of tarot each, and the lines in your hand. You will argue about it on the ship, and again at sea.",
     myth: {
       title: "Guan Yu, the God Merchants Trust",
       text:
@@ -561,7 +561,7 @@ export const destinations: Destination[] = [
     japaneseName: "変身写真スタジオ cocomo 浅草",
     romaji: "Henshin Shashin Sutajio cocomo, Asakusa",
     day: "Day 10 · Wednesday, 28 July 2027",
-    tagline: "Two hours to become a geisha and a samurai — real oshiroi, real armour, real weight.",
+    tagline: "Three hours to become a geisha and a samurai — real oshiroi, real armour, real weight.",
     story:
       "The transformation happens in pieces and you feel every one. For her: hair scraped back and bound flat, then wax, then a brush loaded with oshiroi laying cold white over face, throat and the long V left bare at the nape — the one deliberate gap, the oldest flirtation in Japan. Eyebrows redrawn. Lower lip painted a small crushed red. Then the katsura goes on, a lacquered wig heavy enough that you change how you hold your neck, pinned with kanzashi. Then silk on silk until the hikizuri trails behind you across the studio floor and the brocade obi is pulled tight enough to make your posture someone else's. For him: laced scales, the do strapped down, sode at the shoulders, kabuto last with its crest rising off the brow. You look at each other. Neither of you is entirely in the room.",
     myth: {

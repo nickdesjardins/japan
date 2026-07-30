@@ -142,7 +142,7 @@ function PortCallBand({ call }: { call: PortCall }) {
           sub={
             call.lastTender
               ? `ship's last tender ${call.lastTender}`
-              : `ship's all aboard ${call.allAboard}`
+              : `${call.allAboardLabel ?? "ship's all aboard"} ${call.allAboard}`
           }
         />
         <Slot label="Ship sails" time={call.sails} />
@@ -156,8 +156,8 @@ function PortCallBand({ call }: { call: PortCall }) {
           is the thing that turns a missed deadline from expensive into final. */}
       <p className="mt-4 border-t border-kincha/20 pt-4 text-[0.78rem] leading-[1.6] text-nezu">
         <span className="text-rikyu">
-          The big number is ours, not the ship&rsquo;s — ninety minutes before she
-          sails rather than the thirty Princess asks for.
+          {call.convention ??
+            "The big number is ours, not the ship’s — ninety minutes before she sails rather than the thirty Princess asks for."}
         </span>{" "}
         Princess sails on schedule and says in writing that she may do it with no
         announcement; there is no last call. And on a Japan round trip Princess Japan

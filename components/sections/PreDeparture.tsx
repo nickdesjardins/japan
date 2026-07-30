@@ -2,7 +2,21 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { CloudBand } from "@/components/art/Motifs";
 import { Reveal } from "@/components/motion/Reveal";
 import { MAP_APPS } from "@/data/maps";
-import { beforeYouLeave, packing } from "@/data/predeparture";
+import {
+  beforeYouLeave,
+  bookingRoutes,
+  hireMethods,
+  packing,
+  portCars,
+  type PortCar,
+} from "@/data/predeparture";
+
+/** Only one port is genuinely a problem, and it should look like it. */
+const RISK_STYLE: Record<PortCar["risk"], string> = {
+  Fine: "border-matsuba/50 text-matsuba",
+  Manageable: "border-kin/50 text-kin",
+  "This is the one": "border-shu/60 bg-bengara/25 text-shinshu",
+};
 
 export function PreDeparture() {
   return (
@@ -92,16 +106,23 @@ export function PreDeparture() {
             Things to do first
           </h3>
           <p className="mt-4 max-w-3xl leading-[1.78] text-rikyu">
-            Counting backwards from the 19th. Where a government service is named
-            below, that domain is the only place to use it — every one of these has
-            look-alike sites that charge for something free, and they buy the search
-            ads.
+            Counting backwards from the 19th. Most of this is admin you can do in any
+            order on any evening — but{" "}
+            <span className="text-kinari">three things have a queue behind them</span>,
+            and they are numbered below so you know which envelope to open first: the
+            costume session, then the port-day cars, then the fortune reading. Where a
+            government service is named, that domain is the only place to use it —
+            every one of these has look-alike sites that charge for something free, and
+            they buy the search ads.
           </p>
         </Reveal>
 
         <Reveal stagger={60} className="mt-12 space-y-px border border-kincha/20 bg-kincha/20">
           {beforeYouLeave.map((task) => (
-            <div key={task.title} className="bg-sumi p-6 sm:p-8">
+            <div
+              key={task.title}
+              className={`bg-sumi p-6 sm:p-8 ${task.priority ? "border-l-2 border-kin" : ""}`}
+            >
               <div className="grid gap-x-8 gap-y-3 md:grid-cols-[11rem_1fr]">
                 <p className="text-[0.62rem] uppercase tracking-[0.26em] text-yamabuki md:pt-1.5">
                   {task.when}
@@ -109,6 +130,12 @@ export function PreDeparture() {
 
                 <div className="min-w-0">
                   <h4 className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5 font-display text-lg text-shironeri">
+                    {task.priority ? (
+                      <span className="inline-grid h-6 w-6 shrink-0 translate-y-0.5 place-items-center rounded-full bg-kin text-[0.7rem] font-bold text-sumi tabular-nums">
+                        <span className="sr-only">Booking priority </span>
+                        {task.priority}
+                      </span>
+                    ) : null}
                     {task.title}
                     {task.recheck ? (
                       <span className="border border-shu/50 px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.2em] text-shu">
@@ -132,6 +159,125 @@ export function PreDeparture() {
             </div>
           ))}
         </Reveal>
+
+        {/* ---------------------------------------------------- the held cars */}
+        <Reveal className="mt-24">
+          <h3 className="font-display text-[clamp(1.5rem,1.2rem+1vw,2rem)] font-semibold text-shironeri">
+            The cars, and what happens if one doesn&rsquo;t turn up
+          </h3>
+          <p className="mt-4 max-w-3xl leading-[1.78] text-rikyu">
+            &ldquo;Held all day&rdquo; is a real arrangement with a published price —
+            but it is the most expensive instrument there is, and this trip needs it{" "}
+            <span className="text-kinari">exactly once</span>. Buy it at Kōchi, where
+            the wharf has no rank, no bus and no railway. At the other three ports you
+            are in a resort, a city, or a hundred metres from a taxi rank, and a car
+            paid to sit outside a building is money spent on a fear you can answer for
+            nothing.
+          </p>
+          <p className="mt-5 max-w-3xl leading-[1.78] text-rikyu">
+            Done that way, the driving across all four port days comes to roughly{" "}
+            <span className="text-kin">¥36,000 in total</span> — not per day. Charter
+            everything instead and it is nearer ¥110,000 for the same journeys.
+          </p>
+        </Reveal>
+
+        {/* four instruments, cheapest first */}
+        <Reveal stagger={70} className="mt-12 grid gap-px border border-kincha/20 bg-kincha/20 md:grid-cols-2">
+          {hireMethods.map((m, i) => (
+            <div key={m.name} className="bg-sumi p-6 sm:p-7">
+              <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="mr-1 text-[0.6rem] uppercase tracking-[0.24em] text-mizu tabular-nums">
+                  {i === 0 ? "Cheapest" : i === hireMethods.length - 1 ? "Dearest" : `0${i + 1}`}
+                </span>
+                <span className="font-display text-lg font-semibold text-shironeri">
+                  {m.name}
+                </span>
+                {m.script ? (
+                  <span className="font-jp text-sm text-kincha" lang="ja">
+                    {m.script}
+                  </span>
+                ) : null}
+              </p>
+              <p className="mt-3 text-[0.84rem] leading-[1.7] text-kin">{m.cost}</p>
+              <p className="mt-3 text-[0.9rem] leading-[1.75] text-rikyu">{m.use}</p>
+            </div>
+          ))}
+        </Reveal>
+
+        {/* how to actually book one from Montréal */}
+        <Reveal stagger={70} className="mt-12 grid gap-8 md:grid-cols-3">
+          {bookingRoutes.map((r, i) => (
+            <div key={r.name} className="border-t border-kincha/30 pt-5">
+              <p className="font-display text-[0.95rem] leading-snug text-kin">
+                <span className="mr-2 tabular-nums text-kincha" aria-hidden="true">
+                  {i + 1}.
+                </span>
+                {r.name}
+              </p>
+              <p className="mt-2 text-[0.7rem] uppercase tracking-[0.2em] text-mizu">
+                {r.effort}
+              </p>
+              <p className="mt-3 text-[0.86rem] leading-[1.72] text-rikyu">{r.what}</p>
+            </div>
+          ))}
+        </Reveal>
+
+        {/* the actual worry, answered per port */}
+        <Reveal stagger={60} className="mt-14 space-y-px border border-kincha/20 bg-kincha/20">
+          {portCars.map((p) => (
+            <div key={p.port} className="bg-sumi p-6 sm:p-8">
+              <div className="grid gap-x-8 gap-y-3 md:grid-cols-[11rem_1fr]">
+                <div className="md:pt-1">
+                  <p className="font-display text-lg text-shironeri">{p.port}</p>
+                  <p className="mt-1 text-[0.62rem] uppercase tracking-[0.24em] text-nezu">
+                    {p.day}
+                  </p>
+                </div>
+
+                <div className="min-w-0">
+                  <p className="font-display text-[1.02rem] leading-snug text-kin">
+                    {p.hold}
+                  </p>
+                  <p className="mt-2 text-[0.84rem] leading-[1.7] text-mizu">{p.cost}</p>
+
+                  <p className="mt-4 text-[0.88rem] leading-[1.72] text-rikyu">{p.job}</p>
+
+                  <p className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+                    <span className="text-[0.6rem] uppercase tracking-[0.24em] text-nezu">
+                      If the car is gone
+                    </span>
+                    <span
+                      className={`border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.2em] ${RISK_STYLE[p.risk]}`}
+                    >
+                      {p.risk}
+                    </span>
+                  </p>
+
+                  <p className="mt-3 text-[0.88rem] leading-[1.72] text-kinari">
+                    {p.stranded}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Reveal>
+
+        <p className="mt-10 max-w-3xl border-l-2 border-kin/70 bg-kin/[0.06] py-3 pl-5 pr-4 text-[0.88rem] leading-[1.72] text-kinari">
+          <span className="mr-2 font-brush text-kin" aria-hidden="true">
+            要
+          </span>
+          Which app, where: <span className="text-kin">GO</span> covers all forty-seven
+          Japanese prefectures and is the only one that reaches Toba.{" "}
+          <span className="text-kin">Uber</span> works in Yokohama, Tokyo, Nagasaki and
+          Kōchi city — but dispatches nothing to a cargo wharf, so it is not the answer
+          at Misato No. 7. On Jeju it is <span className="text-kin">k.ride</span>, not
+          Uber. And four habits make the rest a non-event: take the driver&rsquo;s card
+          at the <em>first</em> stop rather than the last, photograph the number plate,
+          agree the return time in writing when you book rather than on the day, and put
+          the port agent&rsquo;s telephone number — it is in the Princess app every
+          morning, beside the all-aboard time — into both phones before you go ashore.
+          That last number is the one that solves the problem you are actually imagining.
+        </p>
 
         {/* ---------------------------------------------------- the packing */}
         <Reveal className="mt-24">
