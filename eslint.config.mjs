@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Nested checkouts are separate projects, not source for this lint run.
+    ".claude/worktrees/**",
   ]),
 ]);
 

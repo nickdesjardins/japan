@@ -47,6 +47,13 @@ export const chapters: Chapter[] = [
     blurb: "Eleven days, twenty-two places",
   },
   {
+    href: "/schedules",
+    label: "Schedules",
+    script: "暦",
+    reading: "koyomi",
+    blurb: "Bookings, deadlines and every transfer",
+  },
+  {
     href: "/traditions",
     label: "Traditions",
     script: "礼",

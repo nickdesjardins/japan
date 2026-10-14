@@ -9,6 +9,11 @@ import { voyage } from "@/data/voyage";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  return <HeaderNavigation key={pathname} pathname={pathname} />;
+}
+
+/** A route change resets the drawer state without a cascading effect update. */
+function HeaderNavigation({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const panel = useRef<HTMLDivElement | null>(null);
   const toggle = useRef<HTMLButtonElement | null>(null);
@@ -21,10 +26,6 @@ export function SiteHeader() {
     setOpen(false);
     toggle.current?.focus();
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -92,7 +93,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="chapter-drawer"
             aria-label={open ? "Close the chapter menu" : "Open the chapter menu"}
-            className="-ml-1.5 flex shrink-0 items-center gap-2.5 p-1.5 text-rikyu transition-colors hover:text-kin lg:hidden"
+            className="-ml-1.5 flex shrink-0 items-center gap-2.5 p-1.5 text-rikyu transition-colors hover:text-kin xl:hidden"
           >
             {/* Three strokes that fold into a cross. */}
             <span className="relative block h-4 w-5" aria-hidden="true">
@@ -128,9 +129,9 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          {/* The full rail only fits from lg up; everything narrower gets the
+          {/* The full rail only fits from xl up; everything narrower gets the
               drawer, where the English has room to be read. */}
-          <ul className="ml-auto hidden items-center gap-1 lg:flex lg:gap-2">
+          <ul className="ml-auto hidden items-center gap-1 xl:flex xl:gap-2">
             {chapters.slice(1).map((chapter, i) => {
               const index = i + 1;
               const active = index === current;
@@ -166,7 +167,7 @@ export function SiteHeader() {
         id="chapter-drawer"
         inert={!open}
         aria-hidden={!open}
-        className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-50 xl:hidden ${open ? "" : "pointer-events-none"}`}
         style={{ viewTransitionName: "chapter-drawer" }}
       >
         <button
